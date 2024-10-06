@@ -1,0 +1,9 @@
+df['InvoiceDate'] = pd.to_datetime(df['InvoiceDate'], format='%d-%m-%Y %H:%M')
+df['TotalAmount'] = df['Quantity'] * df['UnitPrice']
+
+correlation_data = df[['Quantity', 'UnitPrice', 'Customer ID', 'TotalAmount', "Age", "Salary"]]
+correlation_matrix = correlation_data.corr()
+plt.figure(figsize=(8, 6))
+sns.heatmap(correlation_matrix, cmap='coolwarm', fmt=".2f", linewidths=.5)
+plt.title('Correlation Matrix')
+plt.show()
